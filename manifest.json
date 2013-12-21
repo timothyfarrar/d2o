@@ -1,0 +1,26 @@
+{
+  "name": "D2O",
+  "version": "0.1.00",
+  "manifest_version": 2,
+  "minimum_chrome_version": "23",
+  "description": "Web Builder Tool focused on responsive collaboration for CFML Sites.",
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+
+  "permissions": [
+    {"fileSystem": ["write"]},
+    "unlimitedStorage",
+    "contextMenus"
+  ],
+
+  "icons": {
+    "16":  "/_app/img/16x16/file_d2o.png",
+    "32":  "/_app/img/32x32/file_d2o.png",
+    "64":  "/_app/img/64x64/file_d2o.png",
+    "128": "/_app/img/128x128/file_d2o.png"
+  }
+
+}
