@@ -17,10 +17,10 @@
   ],
 
   "icons": {
-    "16":  "/_app/img/16x16/file_d2o.png",
-    "32":  "/_app/img/32x32/file_d2o.png",
-    "64":  "/_app/img/64x64/file_d2o.png",
-    "128": "/_app/img/128x128/file_d2o.png"
+    "16":  "/_app/media/img/16x16/file_d2o.png",
+    "32":  "/_app/media/img/32x32/file_d2o.png",
+    "64":  "/_app/media/img/64x64/file_d2o.png",
+    "128": "/_app/media/img/128x128/file_d2o.png"
   }
 
 }
