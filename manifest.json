@@ -1,26 +1,33 @@
 {
-  "name": "D2O",
-  "version": "0.1.00",
-  "manifest_version": 2,
-  "minimum_chrome_version": "23",
-  "description": "Web Builder Tool focused on responsive collaboration for CFML Sites.",
-  "app": {
-    "background": {
-      "scripts": ["background.js"]
+    
+    "manifest_version": 2,
+    "name": "D2O",
+    "version": "0.0.0.2",
+    "author": "SOSensible Group, LLC",
+    "minimum_chrome_version": "23",
+    "description": "Web Builder Tool focused on responsive collaboration for CFML Sites.",
+    
+    "app": {
+        "background": {
+            "scripts": ["/app.js","/share/js/jquery/jquery.min.js"]
+        }
+    },
+    
+    "permissions": [
+        "contextMenus",
+        "app.window",
+        {"fileSystem": ["write"]},
+        "identity",
+        "storage", "experimental", "https://www.googleapis.com/d2o/*",
+        "unlimitedStorage",
+        "webview"
+    ],
+    
+    "icons": {
+        "16":  "/app/media/img/16x16/file_d2o.png",
+        "32":  "/app/media/img/32x32/file_d2o.png",
+        "64":  "/app/media/img/64x64/file_d2o.png",
+        "128": "/app/media/img/128x128/file_d2o.png"
     }
-  },
-
-  "permissions": [
-    {"fileSystem": ["write"]},
-    "unlimitedStorage",
-    "contextMenus"
-  ],
-
-  "icons": {
-    "16":  "/_app/media/img/16x16/file_d2o.png",
-    "32":  "/_app/media/img/32x32/file_d2o.png",
-    "64":  "/_app/media/img/64x64/file_d2o.png",
-    "128": "/_app/media/img/128x128/file_d2o.png"
-  }
-
+    
 }
