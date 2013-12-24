@@ -20,7 +20,8 @@
         "identity",
         "storage", "experimental", "https://www.googleapis.com/d2o/*",
         "unlimitedStorage",
-        "webview"
+        "webview",
+    "contextMenus"
     ],
     
     "icons": {
