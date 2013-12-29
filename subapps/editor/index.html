@@ -1,9 +1,14 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/share/js/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="/share/js/codemirror/lib/codemirror.css" />
+    <link rel="stylesheet" href="/share/js/jquery/jquery-ui/css/ui-lightness/jquery-ui.css" />
     <script src="/share/js/jquery/jquery.min.js"></script>
+    <script src="/share/js/d2o/sjso.js"></script>
+    <script src="/share/js/jquery/jquery-ui/jquery-ui.min.js"></script>
     <script src="/share/js/codemirror/lib/codemirror.js"></script>
     <script src="snippets.js"></script>
+    <script src="/share/js/d2o/editor.js"></script>
+    <script src="/share/js/d2o/file.js"></script>
     <script src="editor.js"></script>
 
     <style>
@@ -12,9 +17,13 @@
         margin:0;
         padding:3px;
     }
+    .closeFile{
+        cursor: pointer;
+    }
     </style>
+    <title>D2O - IDE</title>
 </head>
-<body>
+<body id="ide">
     <h1>IDE</h1>
     <div class="buttons">
         <button id="new"> <img src="img/16x16/file_add.png"/> New </button>

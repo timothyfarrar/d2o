@@ -9,20 +9,15 @@
     
     "app": {
         "background": {
-            "scripts": ["/app.js","/share/js/jquery/jquery.min.js"]
+            "scripts": ["/app.js"]
         }
     },
     
-    "permissions": [
-        "contextMenus",
-        "app.window",
-        {"fileSystem": ["write"]},
-        "identity",
-        "storage", "experimental", "https://www.googleapis.com/d2o/*",
-        "unlimitedStorage",
-        "webview",
+  "permissions": [
+    {"fileSystem": ["write"]},
+    "unlimitedStorage",
     "contextMenus"
-    ],
+  ],
     
     "icons": {
         "16":  "/app/media/img/16x16/file_d2o.png",

@@ -13,5 +13,19 @@
 <body>
     <h1>Project(s)</h1>
     <webview></webview>
+    <nav>
+      <button id="choose_file">Choose File</button>
+      <button id="choose_dir">Choose Directory</button>
+    </nav>
+
+    Path: <input type="text" id="file_path" readonly>
+    <span>Size: <span id="file_size"></span> bytes</span>
+
+    <output></output>
+
+    <textarea></textarea>
+    <p><button id="save_file" disabled>Save As</button></p>
+    <script src="dnd.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

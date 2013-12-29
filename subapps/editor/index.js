@@ -5,4 +5,5 @@ $(function(){
   		mode:  "javascript"
 	});
     console.log(myCodeMirror);
+    console.log(chrome.app.window.get('project'))
 })

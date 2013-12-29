@@ -42,9 +42,3 @@ function runApp(readInitialState) {
     });
  
 }
-
-function handleEditorButton(){
-    chrome.app.window.create('/subapps/editor/index.html', {
-      frame: 'chrome', id: "editorwin", bounds: { width: 720, height: 400}
-    });
-}

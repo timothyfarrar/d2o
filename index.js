@@ -8,23 +8,26 @@ $(function(){
     pgButton.editor.on("click",
         function(){
             chrome.app.window.create('/subapps/editor/index.html', {
-                frame: 'chrome', id: "editwin", bounds: { width: 720, height: 400}
+                id: "editor", frame: 'chrome', id: "editwin", bounds: { width: 720, height: 400}
             })
         }
     );
 
     pgButton.projects.on("click",
-        function(){
+        function(launchData){
             chrome.app.window.create('/subapps/project/index.html', {
-                frame: 'chrome', id: "projectwin", bounds: { width: 720, height: 400}
-            })
+                id: "project", frame: 'chrome', id: "projectwin", bounds: { width: 720, height: 400}
+            }, function(win) {
+                win.contentWindow.launchData = launchData;
+              })
+
         }
     );
 
     pgButton.tickets.on("click",
         function(){
             chrome.app.window.create('/subapps/ticket/index.html', {
-                frame: 'chrome', id: "ticketwin", bounds: { width: 720, height: 400}
+                id: "ticket", frame: 'chrome', id: "ticketwin", bounds: { width: 720, height: 400}
             })
         }
     );
