@@ -16,12 +16,15 @@ var Editor = Class.extend({
         tabs.tabs( "refresh" );
       }
     });
-    this.files = [];
+    this.files = {};
     this.tabs = tabs;
     return this;
   },
+  getCurrFile: function (tabNum) {
+    return this.tabs.tabs("option", "active");
+  },
   close: function (tabNum){
-    var currTab = tabNum || this.tabs.tabs("option", "active");
+    var currTab = tabNum || getCurrFile();
     this.tabs.find("li:eq(" + currTab + ")")
              .add("#tabs-" + (currTab + 1))
              .remove()
@@ -32,7 +35,7 @@ var Editor = Class.extend({
     this.fileEntry = theFileEntry;
     this.hasWriteAccess = isWritable;
   },
-  open: function (readOnlyEntry){
+  open: function (fileEntry){
     var objThis = this,
         $newFile,
         tabNum = this.tabs.find("li").length + 1,
@@ -48,57 +51,60 @@ var Editor = Class.extend({
       elem: $newFile,
       content: ""
     });
-    this.files.push(thisFile);
-    if(readOnlyEntry){
-      //setFile(readOnlyEntry, true)
-      readOnlyEntry.file(function(file) {
+    this.files[tabNum] = thisFile;
+    if(fileEntry){
+      fileEntry.file(function(file) {
           var reader = new FileReader();
     
-          // reader.onerror = errorHandler;
+          reader.onerror = objThis.errorHandler;
           reader.onloadend = function(e) {
             objThis.tabs.find("a[href=#tabs-" + tabNum + "]")
             .find(".title")
-              .text(readOnlyEntry.fullPath)
+              .text(fileEntry.fullPath)
+            thisFile.fileObj = fileEntry;
+            thisFile.hasWriteAccess = true;
             thisFile.editor.setValue(e.target.result);;
           };
-    
           reader.readAsText(file);
-        });
+        }, objThis.errorHandler);
     }
     this.tabs
       .tabs("refresh")
       .tabs( "option", "active", tabNum-1);
+    console.debug(thisFile)
   },
   chooseFile: function (){
     var objThis = this;
     chrome.fileSystem.chooseEntry({ type: 'openWritableFile' }, function(theFile){objThis.open(theFile)});
   },
   closeAll: function (){},
-  saveCurrent: function (){}
+  save: function (){
+    var fileNum = this.getCurrFile() + 1;
+    console.debug(this.files[fileNum])
+    this.files[fileNum].save();
+  },
+  errorHandler: function (e){
+    var msg = "";
+    switch (e.code) {
+      case FileError.QUOTA_EXCEEDED_ERR:
+      msg = "QUOTA_EXCEEDED_ERR";
+      break;
+      case FileError.NOT_FOUND_ERR:
+      msg = "NOT_FOUND_ERR";
+      break;
+      case FileError.SECURITY_ERR:
+      msg = "SECURITY_ERR";
+      break;
+      case FileError.INVALID_MODIFICATION_ERR:
+      msg = "INVALID_MODIFICATION_ERR";
+      break;
+      case FileError.INVALID_STATE_ERR:
+      msg = "INVALID_STATE_ERR";
+      break;
+      default:
+      msg = "Unknown Error";
+      break;
+    };
+    console.log("Error: " + msg);
+  }
 })
-
-
-function errorHandler(e) {
-  var msg = "";
-
-  switch (e.code) {
-    case FileError.QUOTA_EXCEEDED_ERR:
-    msg = "QUOTA_EXCEEDED_ERR";
-    break;
-    case FileError.NOT_FOUND_ERR:
-    msg = "NOT_FOUND_ERR";
-    break;
-    case FileError.SECURITY_ERR:
-    msg = "SECURITY_ERR";
-    break;
-    case FileError.INVALID_MODIFICATION_ERR:
-    msg = "INVALID_MODIFICATION_ERR";
-    break;
-    case FileError.INVALID_STATE_ERR:
-    msg = "INVALID_STATE_ERR";
-    break;
-    default:
-    msg = "Unknown Error";
-    break;
-  };
-}

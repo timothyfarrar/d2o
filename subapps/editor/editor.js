@@ -1,6 +1,7 @@
+// testing
 jQuery(function($) {
 	var $ide = $("#ide"),
-      $editor = $ide.find("#editor"),
+      $editor = $ide.find("#editor");
 		  editor = new Editor({elem: $editor});
 	editor.open();
   $ide
@@ -16,4 +17,9 @@ jQuery(function($) {
       e.preventDefault();
       editor.chooseFile();
     })
+    .on("click", "#save", function(e){
+      e.preventDefault();
+      editor.save();
+    })
+
 })
